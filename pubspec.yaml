@@ -1,4 +1,4 @@
-name: smartsan-app
+name: smartsan_app
 description: A Flutter application for SmartSan.
 publish_to: "none"
 version: 1.0.0+1
