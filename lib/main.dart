@@ -135,9 +135,7 @@ class _HomePageState extends State<HomePage> {
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16),
                   ),
-                  ElevatedButton.icon(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => DashBoard()));
-                  }, label: Text("Get Started Now"),
+                  ElevatedButton.icon(onPressed: (){}, label: Text("Get Started Now"),
                     icon: Icon(Icons.arrow_forward),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF2279CF),
