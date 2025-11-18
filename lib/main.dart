@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:smartsan_app/app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -67,7 +68,9 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => DashBoard()));
+                        },
                         label: const Text("View Dashboard"),
                         icon: const Icon(Icons.arrow_forward),
                         style: ElevatedButton.styleFrom(
