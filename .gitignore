@@ -117,3 +117,16 @@ app.*.symbols
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
+
+# Dependencies
+/functions/node_modules
+
+# Compiled JavaScript (Target output directory)
+/functions/lib/
+
+# Logs and runtime artifacts
+/functions/logs/
+/firebase-debug.log
+/firebase-debug.*.log
+.runtimeconfig.json  # Contains environment configuration (often sensitive)
+node_modules
