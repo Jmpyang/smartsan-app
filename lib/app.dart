@@ -43,6 +43,14 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashBoardPage extends State<DashboardPage> {
+  bool _isRefreshing = false;
+
+  Future<void> _refreshDashboard() async {
+    setState(() => _isRefreshing = true);
+    await Future.delayed(const Duration(seconds: 1)); // simulate refresh
+    setState(() => _isRefreshing = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,130 +111,133 @@ class _DashBoardPage extends State<DashboardPage> {
           ],
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF0D0D0D),
-              Color(0xFF1A1A1A),
-              Color(0xFF121212),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: const [
-                    Text(
-                      "Dashboard",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 25, color: Colors.white),
-                    ),
-                    Text(
-                      "Monitor sanitization operations in real time",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white70),
-                    ),
-                  ],
-                ),
+      body:
+          RefreshIndicator(onRefresh: _refreshDashboard, child:
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF0D0D0D),
+                  Color(0xFF1A1A1A),
+                  Color(0xFF121212),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
-              _statCard("Active Workers", "142", "On duty today",
-                  "+12% vs last month", Icons.people, Colors.green),
-              _statCard("Active Workers", "142", "On duty today",
-                  "+12% vs last month", Icons.people, Colors.green),
-              _statCard("Waste Collected", "24.5T", "This week",
-                  "+8% vs last month", Icons.delete, Colors.green),
-              _statCard("Service Efficiency", "94%", "Target 90%",
-                  "+3% vs last month", Icons.analytics, Colors.green),
-              _statCard("Service Efficiency", "94%", "Target 90%",
-                  "-5% vs last month", Icons.location_on, Colors.red),
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: const [
-                        Icon(Icons.location_on, size: 20, color: Colors.green),
-                        SizedBox(width: 8),
-                        Text(
-                          "Recent Community reports",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    _reportCard("Main Street & 5th Ave", "15 min ago", "Pending"),
-                    _reportCard("Park Avenue", "1 hour ago", "Active"),
-                    _reportCard("Beach road", "3 hour ago", "Completed"),
-                    _reportCard("Central market", "30 min ago", "Alert"),
-                  ],
-                ),
-              ),
-
-              // 🔹 New "Today's Summary" Container
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Card(
-                  color: const Color(0xFF1A1A1A),
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Padding(
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Today's Summary",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
+                      children: const [
+                        Text(
+                          "Dashboard",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 25, color: Colors.white),
                         ),
-                        const SizedBox(height: 16),
-                        _summaryItem(Icons.check_circle, Colors.green, "Completed", "47"),
-                        _summaryItem(Icons.access_time, Colors.orange, "In Progress", "23"),
-                        _summaryItem(Icons.warning_amber_rounded, Colors.red, "Alerts", "3"),
-                        const Divider(color: Colors.white24, height: 32),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text("Avg Response Time",
-                                style: TextStyle(color: Colors.white70, fontSize: 14)),
-                            Text("18 min",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: const LinearProgressIndicator(
-                            value: 0.8,
-                            minHeight: 8,
-                            color: Colors.green,
-                            backgroundColor: Colors.white10,
-                          ),
+                        Text(
+                          "Monitor sanitization operations in real time",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white70),
                         ),
                       ],
                     ),
                   ),
-                ),
+                  _statCard("Active Workers", "142", "On duty today",
+                      "+12% vs last month", Icons.people, Colors.green),
+                  _statCard("Active Workers", "142", "On duty today",
+                      "+12% vs last month", Icons.people, Colors.green),
+                  _statCard("Waste Collected", "24.5T", "This week",
+                      "+8% vs last month", Icons.delete, Colors.green),
+                  _statCard("Service Efficiency", "94%", "Target 90%",
+                      "+3% vs last month", Icons.analytics, Colors.green),
+                  _statCard("Service Efficiency", "94%", "Target 90%",
+                      "-5% vs last month", Icons.location_on, Colors.red),
+                  Container(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: const [
+                            Icon(Icons.location_on, size: 20, color: Colors.green),
+                            SizedBox(width: 8),
+                            Text(
+                              "Recent Community reports",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        _reportCard("Main Street & 5th Ave", "15 min ago", "Pending"),
+                        _reportCard("Park Avenue", "1 hour ago", "Active"),
+                        _reportCard("Beach road", "3 hour ago", "Completed"),
+                        _reportCard("Central market", "30 min ago", "Alert"),
+                      ],
+                    ),
+                  ),
+
+                  // 🔹 New "Today's Summary" Container
+                  Container(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Card(
+                      color: const Color(0xFF1A1A1A),
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Today's Summary",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 16),
+                            _summaryItem(Icons.check_circle, Colors.green, "Completed", "47"),
+                            _summaryItem(Icons.access_time, Colors.orange, "In Progress", "23"),
+                            _summaryItem(Icons.warning_amber_rounded, Colors.red, "Alerts", "3"),
+                            const Divider(color: Colors.white24, height: 32),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Text("Avg Response Time",
+                                    style: TextStyle(color: Colors.white70, fontSize: 14)),
+                                Text("18 min",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: const LinearProgressIndicator(
+                                value: 0.8,
+                                minHeight: 8,
+                                color: Colors.green,
+                                backgroundColor: Colors.white10,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
+          ),)
+
     );
   }
 }
