@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "smartsan-00",
+    "staging": "smartsan-00"
+  }
+}

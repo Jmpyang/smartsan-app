@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "43509276428",
+    "firebase_url": "https://smartsan-00-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "smartsan-00",
+    "storage_bucket": "smartsan-00.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43509276428:android:1d53824ab4c5a84909b329",
+        "android_client_info": {
+          "package_name": "com.example.smartsan_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjo8T-vvhR5eh0wMyYfS1qTNAzKk2-XYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

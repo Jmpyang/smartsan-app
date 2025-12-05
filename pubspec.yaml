@@ -1,4 +1,4 @@
-name: smartsan-app
+name: smartsan_app
 description: A Flutter application for SmartSan.
 publish_to: "none"
 version: 1.0.0+1
@@ -13,22 +13,33 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_localizations:
     sdk: flutter
+  firebase_storage: ^13.0.4
+  cloud_functions: ^6.0.4
+  firebase_core: ^4.2.1
+  geolocator: ^11.0.0
+  google_maps_flutter: ^2.5.0
+  cloud_firestore: ^6.1.0
+  image_picker: ^1.0.7
+  firebase_auth: ^6.1.2
+  firebase_app_check: ^0.4.1+2
+  provider: ^6.1.5+1
+  firebase_database: ^12.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
 
-  assets:
-    - assets/images/
-    - assets/icons/
-
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
-        - asset: assets/fonts/Roboto-Bold.ttf
-          weight: 700
+#  assets:
+#    - assets/images/
+#    - assets/icons/
+#
+#  fonts:
+#    - family: Roboto
+#      fonts:
+#        - asset: assets/fonts/Roboto-Regular.ttf
+#        - asset: assets/fonts/Roboto-Bold.ttf
+#          weight: 700
